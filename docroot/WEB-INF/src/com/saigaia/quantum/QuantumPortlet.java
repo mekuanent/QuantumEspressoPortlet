@@ -70,7 +70,7 @@ public class QuantumPortlet extends MVCPortlet {
 			String sudoFileName = "";
 			File newSudoFile = null;
 			
-			if(uploadRequest.getFileName("sudoFile") != null){
+			if(uploadRequest.getFileName("sudoFile") != null && !uploadRequest.getFileName("sudoFile").equals("")){
 				sudoFileName = uploadRequest.getFileName("sudoFile");
 				newSudoFile = new File(uploadRequest.getFile("sudoFile").getParent() + "/" + sudoFileName);
 				processFile(uploadRequest, newSudoFile, "sudoFile");
@@ -79,6 +79,11 @@ public class QuantumPortlet extends MVCPortlet {
 				newSudoFile = new File(uploadRequest.getFile("inputFile").getParent() + "/" + sudoFileName);
 				prepareDummyFile(newSudoFile);
 			}
+			
+			logger.info("PARAM:::: " + uploadRequest.getParameter("calculationType"));
+			logger.info("PARAM:::: " + user.getScreenName());
+			
+			logger.info("PARAM:::: " + uploadRequest.getFileName("sudoFile"));
 			
 			CreateTaskRequest ctr = new CreateTaskRequest();
 			ctr.application = "4"; 
@@ -91,7 +96,9 @@ public class QuantumPortlet extends MVCPortlet {
 			
 			ctr.output_files.add(new Output_files("outputs.tar.gz",""));
 			
-			CreateTaskResponse ctResponse = Connection.apiService.createTask(user.getScreenName() + "", ctr);
+			CreateTaskResponse ctResponse = Connection.apiService.createTask(user.getScreenName(), ctr);
+			
+			logger.info("TASK ID:::: " + ctResponse.getId());
 			
 			Map<String, TypedFile> files = new HashMap<String, TypedFile>();
 			

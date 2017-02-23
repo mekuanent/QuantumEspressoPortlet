@@ -68,41 +68,36 @@ You can check your output by using the <a href="<%= outputsURL %>">See Outputs</
 <aui:form style="position:relative; left: 10%;" action="<%= editCaseURL %>" enctype="multipart/form-data" method="post" >
 	<aui:field-wrapper> 
 		
-		<liferay-ui:message key="Please select one function." />
-		<table>
-			<tr>
-				<td style="width:40%">
-				
-					<aui:input name="calculationType" type="radio" value="pw.x" label="Plane-Wave Self-Consistent Field Calculation (pw.x)" onClick="showSudo()"/>
-					<aui:input name="calculationType" type="radio" value="cp.x" label="Phonon Frequencies Calculation (ph.x)" onClick="showSudo()"/>
-					<aui:input name="calculationType" type="radio" value="d3.x" label="Phonon-Phonon Interaction Calculation (d3.x)" onClick="showSudo()"/>
-					<aui:input name="calculationType" type="radio" value="neb.x" label="Energy Barriers and Reaction Pathway Calculation using the Nudged Elastic Band (NEB) Method (neb.x)" onClick="showSudo()"/> 
-					<aui:input name="calculationType" type="radio" value="pwcond.x" label="Complex Band Structure Calculation (pwcond.x)" onClick="showSudo()"/>
-					<aui:input name="calculationType" type="radio" value="cp.x" label="Car-Parrinello Molecular Dynamics Calculation (cp.x)" onClick="showSudo()"/>
-					<aui:input name="calculationType" type="radio" value="turbo_davidson.x" label="Davidson Turbo TDFT Calculation (turbo_davidson.x)" onClick="showSudo()"/>
-					<aui:input name="calculationType" type="radio" value="turbo_lanczos.x" label="Lanczos Turbo TDFT Calculation (turbo_lanczos.x)" onClick="showSudo()"/>
-					<aui:input name="calculationType" type="radio" value="turbo_spectrum.x" label="Turbo TDFT Calculation (turbo_spectrum.x)" onClick="showSudo()"/>
-					<aui:input name="calculationType" type="radio" value="xspectra.x" label="X-ray Spectra Calculation (xspectra.x)" onClick="showSudo()"/>
-				
-				</td>
-				<td>
-				
-					<aui:input name="calculationType" type="radio" value="pp.x" label="Data Analysis and Plotting (pp.x)" onClick="hideSudo()"/>
-					<aui:input name="calculationType" type="radio" value="dos.x" label="Density of States Calculation (dos.x)" onClick="hideSudo()"/>
-					<aui:input name="calculationType" type="radio" value="bands.x" label="Band-related Properties Calculation (bands.x)" onClick="hideSudo()"/>
-					<aui:input name="calculationType" type="radio" value="projwfc.x" label="Wavefunction Manipulation (projwfc.x)" onClick="hideSudo()"/>
-					<aui:input name="calculationType" type="radio" value="cppp.x" label="Car-Parrinello Post-processing (cppp.x)" onClick="hideSudo()"/>
-					<aui:input name="calculationType" type="radio" value="pw_export.x" label="PWSCF Data Post-processing (pw_export.x)" onClick="hideSudo()"/>
-				
-				</td>
-			</tr>
-		</table>
+	
+	<aui:select name="calculationType">
+	    <aui:option value="pw.x">Plane-Wave Self-Consistent Field Calculation (pw.x)</aui:option>
+	    <aui:option value="ph.x">Phonon Frequencies Calculation (ph.x)</aui:option>
+	    <aui:option value="d3.x">Phonon-Phonon Interaction Calculation (d3.x)</aui:option>
+	    <aui:option value="neb.x">Energy Barriers and Reaction Pathway Calculation using the Nudged Elastic Band (NEB) Method (neb.x)</aui:option>
+	    <aui:option value="pwcond.x">Complex Band Structure Calculation (pwcond.x)</aui:option>
+	    <aui:option value="cp.x">Car-Parrinello Molecular Dynamics Calculation (cp.x)</aui:option>
+	    <aui:option value="turbo_davidson.x">Davidson Turbo TDFT Calculation (turbo_davidson.x)</aui:option>
+	    <aui:option value="turbo_lanczos.x">Lanczos Turbo TDFT Calculation (turbo_lanczos.x)</aui:option>
+	    <aui:option value="turbo_spectrum.x">Turbo TDFT Calculation (turbo_spectrum.x)</aui:option>
+	    <aui:option value="xspectra.x">X-ray Spectra Calculation (xspectra.x)</aui:option>
+	    <aui:option value="pp.x">Data Analysis and Plotting (pp.x)</aui:option>
+	    <aui:option value="dos.x">Density of States Calculation (dos.x)</aui:option>
+	    <aui:option value="bands.x">Band-related Properties Calculation (bands.x)</aui:option>
+	    <aui:option value="projwfc.x">Wavefunction Manipulation (projwfc.x)</aui:option>
+	    <aui:option value="cppp.x">Car-Parrinello Post-processing (cppp.x)</aui:option>
+	    <aui:option value="pw_export.x">PWSCF Data Post-processing (pw_export.x)</aui:option>
+	</aui:select>
 	
 	<br/><br/>
+	
+		<liferay-ui:message key="Please Upload your input file usually <b>.in</b> extension" />
+	
 		<aui:input type="file" name="inputFile" size="75"/>
 		
 		<div class="unhidden" id="sudo_file">
-			<aui:input type="file" name="sudoFile" size="75"/>
+			<br/>Please upload the related file to your input usually <b>".PSU"</b> extension, 
+			<br><b>you can ignore this if you don't need it</b>
+			<aui:input type="file" name="sudoFile" size="75"/>(OPTIONAL)
 		</div>
 	</aui:field-wrapper> 
 	
